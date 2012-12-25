@@ -9,7 +9,7 @@ module.exports = function (grunt) {
 		coffee: {
 			compile: {
 				files: {
-					'lib/jquery.x18n.js': ['lib/x18n/lib/x18n.coffee', 'lib/jquery.x18n.coffee'],
+					'lib/jquery.x18n.js': 'lib/jquery.x18n.coffee',
 					'spec/spec.js': 'spec/spec.coffee'
 				}
 			}
@@ -17,7 +17,7 @@ module.exports = function (grunt) {
 
 		concat: {
 			dist: {
-				src: ['<banner>', 'lib/jquery.x18n.js'],
+				src: ['lib/x18n/lib/x18n.js', '<banner>', 'lib/jquery.x18n.js'],
 				dest: 'lib/jquery.x18n.js'
 			}
 		},
