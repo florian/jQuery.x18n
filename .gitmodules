@@ -7,3 +7,6 @@
 [submodule "lib/x18n"]
 	path = lib/x18n
 	url = git@github.com:js-coder/x18n.git
+[submodule "spec/chai-jquery"]
+	path = spec/chai-jquery
+	url = git://github.com/chaijs/chai-jquery.git
