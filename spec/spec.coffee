@@ -10,22 +10,31 @@ x18n.register 'de',
 
 x18n.set('en')
 
-el = $('#a')
+tEl = $('#t')
+x18nEl = $('#x18n')
 
 describe 'jQuery.x18n', ->
 	describe 't', ->
-		it 'should the innerHTML to the translation', ->
-			el.t('language')
-			expect(el).to.have.html('Language')
+		it 'should set the innerHTML to the translation', ->
+			tEl.t('language')
+			expect(tEl).to.have.html('Language')
 
 		it 'should support numeric interpolation', ->
-			el.t('welcome', 'John')
-			expect(el).to.have.html('Welcome John')
+			tEl.t('welcome', 'John')
+			expect(tEl).to.have.html('Welcome John')
 
 		it 'should support explicit interpolation', ->
-			el.t('bye', name: 'John')
-			expect(el).to.have.html('Bye John')
+			tEl.t('bye', name: 'John')
+			expect(tEl).to.have.html('Bye John')
 
 		it 'should add the data-#{config.key} attribute', ->
-			el.t('language')
-			expect(el).to.have.attr("data-#{$.x18n.config.key}", 'language')
+			tEl.t('language')
+			expect(tEl).to.have.attr("data-#{$.x18n.config.key}", 'language')
+
+	describe 'x18n', ->
+		it 'should have updated the innerHTML of elements with data-#{config.key} attributes', ->
+			expect(x18nEl).to.have.html('Language')
+
+		it 'should update the innerHTML when the language changes', ->
+			x18n.set('de')
+			expect(x18nEl).to.have.html('Sprache')

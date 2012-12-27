@@ -1,5 +1,5 @@
 (function() {
-  var el;
+  var tEl, x18nEl;
 
   x18n.register('en', {
     language: 'Language',
@@ -15,27 +15,38 @@
 
   x18n.set('en');
 
-  el = $('#a');
+  tEl = $('#t');
+
+  x18nEl = $('#x18n');
 
   describe('jQuery.x18n', function() {
-    return describe('t', function() {
-      it('should the innerHTML to the translation', function() {
-        el.t('language');
-        return expect(el).to.have.html('Language');
+    describe('t', function() {
+      it('should set the innerHTML to the translation', function() {
+        tEl.t('language');
+        return expect(tEl).to.have.html('Language');
       });
       it('should support numeric interpolation', function() {
-        el.t('welcome', 'John');
-        return expect(el).to.have.html('Welcome John');
+        tEl.t('welcome', 'John');
+        return expect(tEl).to.have.html('Welcome John');
       });
       it('should support explicit interpolation', function() {
-        el.t('bye', {
+        tEl.t('bye', {
           name: 'John'
         });
-        return expect(el).to.have.html('Bye John');
+        return expect(tEl).to.have.html('Bye John');
       });
       return it('should add the data-#{config.key} attribute', function() {
-        el.t('language');
-        return expect(el).to.have.attr("data-" + $.x18n.config.key, 'language');
+        tEl.t('language');
+        return expect(tEl).to.have.attr("data-" + $.x18n.config.key, 'language');
+      });
+    });
+    return describe('x18n', function() {
+      it('should have updated the innerHTML of elements with data-#{config.key} attributes', function() {
+        return expect(x18nEl).to.have.html('Language');
+      });
+      return it('should update the innerHTML when the language changes', function() {
+        x18n.set('de');
+        return expect(x18nEl).to.have.html('Sprache');
       });
     });
   });
