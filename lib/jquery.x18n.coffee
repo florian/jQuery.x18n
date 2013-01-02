@@ -29,9 +29,11 @@ $.fn.x18n = ->
 		$this = $(@)
 		key = $this.attr("data-#{config.key}")
 		interpolation = $this.attr("data-#{config.interpolation}") || '[]'
-		plural = $this.attr("data-#{config.plural}")
+		n = $this.attr("data-#{config.plural}")
 
 		tr = x18n.t(key, JSON.parse(interpolation)...)
+
+		tr = tr.plural(n) if $.isPlainObject tr
 
 		$this.html(tr)
 	@
