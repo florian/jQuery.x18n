@@ -1,4 +1,4 @@
-# jQuery.[x18n](https://github.com/js-coder/x18n) [Beta]
+# jQuery.[x18n](https://github.com/js-coder/x18n) [![Build Status](https://travis-ci.org/js-coder/jQuery.x18n.png)](https://travis-ci.org/js-coder/jQuery.x18n) [Beta]
 
 *This is still a beta version. Dynamic data bindings are not implemented yet, as they'll will be added to the core not the plugin. This README is also just a draft right now.*
 
