@@ -96,7 +96,7 @@
         x18n.set('de');
         return expect(x18nEl).to.have.html('Sprache');
       });
-      return it('should read the serialised interpolation and pass it to t', function() {
+      it('should read the serialised interpolation and pass it to t method', function() {
         tEl.t('welcome', 'John');
         x18n.set('de');
         expect(tEl).to.have.html('Willkommen John');
@@ -105,6 +105,16 @@
         });
         x18n.set('en');
         return expect(tEl).to.have.html('Bye John');
+      });
+      return it('should read the serialised plural and pass it to the plural method', function() {
+        pluralEl.t('users').plural(1);
+        x18n.set('de');
+        expect(pluralEl).to.have.html('Es ist 1 Benutzer online');
+        x18n.set('en');
+        expect(pluralEl).to.have.html('There is 1 user online');
+        pluralEl.t('users').plural(3);
+        x18n.set('de');
+        return expect(pluralEl).to.have.html('Es sind 3 Benutzer online');
       });
     });
   });

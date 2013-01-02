@@ -79,7 +79,7 @@ describe 'jQuery', ->
 			x18n.set('de')
 			expect(x18nEl).to.have.html('Sprache')
 
-		it 'should read the serialised interpolation and pass it to t', ->
+		it 'should read the serialised interpolation and pass it to t method', ->
 			tEl.t('welcome', 'John')
 			x18n.set('de')
 			expect(tEl).to.have.html('Willkommen John')
@@ -87,3 +87,15 @@ describe 'jQuery', ->
 			tEl.t('bye', name: 'John')
 			x18n.set('en')
 			expect(tEl).to.have.html('Bye John')
+
+		it 'should read the serialised plural and pass it to the plural method', ->
+			pluralEl.t('users').plural(1)
+			x18n.set('de')
+			expect(pluralEl).to.have.html('Es ist 1 Benutzer online')
+
+			x18n.set('en')
+			expect(pluralEl).to.have.html('There is 1 user online')
+
+			pluralEl.t('users').plural(3)
+			x18n.set('de')
+			expect(pluralEl).to.have.html('Es sind 3 Benutzer online')
