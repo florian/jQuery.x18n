@@ -1,16 +1,24 @@
 (function() {
-  var config, tEl, x18nEl;
+  var config, pluralEl, tEl, x18nEl;
 
   x18n.register('en', {
     language: 'Language',
     welcome: 'Welcome %1',
-    bye: 'Bye %{name}'
+    bye: 'Bye %{name}',
+    users: {
+      1: 'There is 1 user online',
+      n: 'There are %1 users online'
+    }
   });
 
   x18n.register('de', {
     language: 'Sprache',
     welcome: 'Willkommen %1',
-    bye: 'Tschüss %{name}'
+    bye: 'Tschüss %{name}',
+    users: {
+      1: 'Es ist 1 Benutzer online',
+      n: 'Es sind %1 Benutzer online'
+    }
   });
 
   x18n.set('en');
@@ -19,10 +27,15 @@
 
   x18nEl = $('#x18n');
 
+  pluralEl = $('#plural');
+
   config = $.x18n.config;
 
-  describe('jQuery.x18n', function() {
+  describe('jQuery', function() {
     describe('t', function() {
+      it('should return this', function() {
+        return expect(tEl.t('language')).to.equal(tEl);
+      });
       it('should set the innerHTML to the translation', function() {
         tEl.t('language');
         return expect(tEl).to.have.html('Language');
@@ -41,7 +54,7 @@
         tEl.t('language');
         return expect(tEl).to.have.attr("data-" + config.key, 'language');
       });
-      return it('should serialise the interpolation arguments', function() {
+      it('should serialise the interpolation arguments', function() {
         tEl.t('welcome', 'John');
         expect(tEl).to.have.attr("data-" + config.interpolation, JSON.stringify(['John']));
         tEl.t('bye', {
@@ -53,8 +66,29 @@
           }
         ]));
       });
+      return it('should return an object with a plural method when not asking for a string', function() {
+        return expect(tEl.t('users')).to.be.an('object')["with"].property('plural').that.is.a('function');
+      });
+    });
+    describe('t(key).plural', function() {
+      it('should return this', function() {
+        return expect(pluralEl.t('users').plural(2)).to.equal(pluralEl);
+      });
+      it('should set the plural correctly', function() {
+        pluralEl.t('users').plural(1);
+        expect(pluralEl).to.have.html('There is 1 user online');
+        pluralEl.t('users').plural(2);
+        return expect(pluralEl).to.have.html('There are 2 users online');
+      });
+      return it('should set data-#{config.plural}', function() {
+        pluralEl.t('users').plural(3);
+        return expect(pluralEl).to.have.attr("data-" + config.plural, '3');
+      });
     });
     return describe('x18n', function() {
+      it('should return this', function() {
+        return expect(x18nEl.x18n()).to.equal(x18nEl);
+      });
       it('should have updated the innerHTML of elements with data-#{config.key} attributes', function() {
         return expect(x18nEl).to.have.html('Language');
       });

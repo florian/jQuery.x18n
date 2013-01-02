@@ -2,20 +2,31 @@ x18n.register 'en',
 	language: 'Language'
 	welcome: 'Welcome %1'
 	bye: 'Bye %{name}'
+	users:
+		1: 'There is 1 user online'
+		n: 'There are %1 users online'
 
 x18n.register 'de',
 	language: 'Sprache'
 	welcome: 'Willkommen %1'
 	bye: 'Tschüss %{name}'
+	users:
+		1: 'Es ist 1 Benutzer online'
+		n: 'Es sind %1 Benutzer online'
 
 x18n.set('en')
 
 tEl = $('#t')
 x18nEl = $('#x18n')
+pluralEl = $('#plural')
+
 config = $.x18n.config
 
-describe 'jQuery.x18n', ->
+describe 'jQuery', ->
 	describe 't', ->
+		it 'should return this', ->
+			expect(tEl.t('language')).to.equal(tEl)
+
 		it 'should set the innerHTML to the translation', ->
 			tEl.t('language')
 			expect(tEl).to.have.html('Language')
@@ -39,7 +50,28 @@ describe 'jQuery.x18n', ->
 			tEl.t('bye', name: 'John')
 			expect(tEl).to.have.attr("data-#{config.interpolation}", JSON.stringify([name: 'John']))
 
+		it 'should return an object with a plural method when not asking for a string', ->
+			expect(tEl.t('users')).to.be.an('object').with.property('plural').that.is.a('function')
+
+	describe 't(key).plural', ->
+		it 'should return this', ->
+			expect(pluralEl.t('users').plural(2)).to.equal(pluralEl)
+
+		it 'should set the plural correctly', ->
+			pluralEl.t('users').plural(1)
+			expect(pluralEl).to.have.html('There is 1 user online')
+
+			pluralEl.t('users').plural(2)
+			expect(pluralEl).to.have.html('There are 2 users online')
+
+		it 'should set data-#{config.plural}', ->
+			pluralEl.t('users').plural(3)
+			expect(pluralEl).to.have.attr("data-#{config.plural}", '3')
+
 	describe 'x18n', ->
+		it 'should return this', ->
+			expect(x18nEl.x18n()).to.equal(x18nEl)
+
 		it 'should have updated the innerHTML of elements with data-#{config.key} attributes', ->
 			expect(x18nEl).to.have.html('Language')
 
