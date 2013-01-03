@@ -1,12 +1,12 @@
 [submodule "spec/mocha"]
 	path = spec/mocha
-	url = git://github.com/visionmedia/mocha.git
+	url = https://github.com/visionmedia/mocha.git
 [submodule "spec/chai"]
 	path = spec/chai
-	url = git://github.com/chaijs/chai.git
+	url = https://github.com/chaijs/chai.git
 [submodule "lib/x18n"]
 	path = lib/x18n
 	url = git@github.com:js-coder/x18n.git
 [submodule "spec/chai-jquery"]
 	path = spec/chai-jquery
-	url = git://github.com/chaijs/chai-jquery.git
+	url = https://github.com/chaijs/chai-jquery.git
