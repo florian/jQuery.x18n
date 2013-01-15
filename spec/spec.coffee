@@ -5,6 +5,8 @@ x18n.register 'en',
 	users:
 		1: 'There is 1 user online'
 		n: 'There are %1 users online'
+	login: 'Login'
+	username: 'Username'
 
 x18n.register 'de',
 	language: 'Sprache'
@@ -13,12 +15,16 @@ x18n.register 'de',
 	users:
 		1: 'Es ist 1 Benutzer online'
 		n: 'Es sind %1 Benutzer online'
+	login: 'Einloggen'
+	username: 'Benutzername'
 
 x18n.set('en')
 
 tEl = $('#t')
 x18nEl = $('#x18n')
 pluralEl = $('#plural')
+submit = $(':submit')
+input = $('#input')
 
 config = $.x18n.config
 
@@ -67,6 +73,19 @@ describe 'jQuery', ->
 		it 'should set data-#{config.plural}', ->
 			pluralEl.t('users').plural(3)
 			expect(pluralEl).to.have.attr("data-#{config.plural}", '3')
+
+		it 'should set the value of buttons', ->
+			submit.t('login')
+			expect(submit).to.have.value('Login')
+
+		it 'should set the placeholder attr of inputs', ->
+			input.t('username')
+			expect(input).to.have.attr('placeholder', 'Username')
+
+		it 'should set the innerHTML of other elements', ->
+			tEl.t('language')
+			expect(tEl).to.have.html('Language')
+
 
 	describe 'x18n', ->
 		it 'should return this', ->

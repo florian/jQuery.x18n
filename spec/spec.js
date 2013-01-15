@@ -1,5 +1,5 @@
 (function() {
-  var config, pluralEl, tEl, x18nEl;
+  var config, input, pluralEl, submit, tEl, x18nEl;
 
   x18n.register('en', {
     language: 'Language',
@@ -8,7 +8,9 @@
     users: {
       1: 'There is 1 user online',
       n: 'There are %1 users online'
-    }
+    },
+    login: 'Login',
+    username: 'Username'
   });
 
   x18n.register('de', {
@@ -18,7 +20,9 @@
     users: {
       1: 'Es ist 1 Benutzer online',
       n: 'Es sind %1 Benutzer online'
-    }
+    },
+    login: 'Einloggen',
+    username: 'Benutzername'
   });
 
   x18n.set('en');
@@ -28,6 +32,10 @@
   x18nEl = $('#x18n');
 
   pluralEl = $('#plural');
+
+  submit = $(':submit');
+
+  input = $('#input');
 
   config = $.x18n.config;
 
@@ -80,9 +88,21 @@
         pluralEl.t('users').plural(2);
         return expect(pluralEl).to.have.html('There are 2 users online');
       });
-      return it('should set data-#{config.plural}', function() {
+      it('should set data-#{config.plural}', function() {
         pluralEl.t('users').plural(3);
         return expect(pluralEl).to.have.attr("data-" + config.plural, '3');
+      });
+      it('should set the value of buttons', function() {
+        submit.t('login');
+        return expect(submit).to.have.value('Login');
+      });
+      it('should set the placeholder attr of inputs', function() {
+        input.t('username');
+        return expect(input).to.have.attr('placeholder', 'Username');
+      });
+      return it('should set the innerHTML of other elements', function() {
+        tEl.t('language');
+        return expect(tEl).to.have.html('Language');
       });
     });
     return describe('x18n', function() {
