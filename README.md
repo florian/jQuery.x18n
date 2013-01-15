@@ -60,7 +60,7 @@ The elements will contain the translation of the detected language by default. W
 
 In case you are not familiar with x18n, you should take a look at the [getting started guide](https://github.com/js-coder/x18n/wiki/Getting-started) for the general usage of x18n itself.
 
-jQuery.x18n contains x18n and jQuery.x18n itself, so you don't need to include x18n by yourself.
+jQuery.x18n contains x18n and jQuery.x18n itself, so you don't need to include x18n by yourself. jQuery.x18n doesn't need any jQuery modules, just the jQuery basis.
 
 ## `$.fn.x18n`
 
