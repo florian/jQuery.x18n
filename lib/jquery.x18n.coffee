@@ -6,11 +6,20 @@ $.x18n =
 		interpolation: 'interpolation'
 		plural: 'plural'
 
-	plural: (n) ->
-		tr = @x18n.tr.plural(n)
-		@html(tr).attr("data-#{config.plural}", n)
-
 config = $.x18n.config
+
+setTranslation = (el, tr) ->
+	if el.is(':submit, :reset, input[type=button]')
+		el.val(tr)
+	else if el.is('input')
+		el.attr('placeholder', tr)
+	else
+		el.html(tr)
+
+plural = (n) ->
+	tr = @x18n.tr.plural(n)
+	setTranslation(@, tr)
+	@attr("data-#{config.plural}", n)
 
 $.fn.t = (key, interpolation...) ->
 	tr = x18n.t(key, interpolation...)
@@ -18,20 +27,23 @@ $.fn.t = (key, interpolation...) ->
 
 	if $.isPlainObject tr
 		@x18n.tr = tr
-		@plural = $.x18n.plural
+		@plural = plural
 	else
-		@html(tr).attr("data-#{config.interpolation}", JSON.stringify(interpolation))
-
+		setTranslation(@, tr)
+		@attr("data-#{config.interpolation}", JSON.stringify(interpolation))
 	@
 
 $.fn.x18n = ->
 	$("[data-#{config.key}]").each ->
 		$this = $(@)
 		key = $this.attr("data-#{config.key}")
-		interpolation = $this.attr("data-#{config.interpolation}") || '[]'
+		interpolation = JSON.parse($this.attr("data-#{config.interpolation}") || '[]')
 		n = $this.attr("data-#{config.plural}")
 
-		$this.t(key, JSON.parse(interpolation)...).plural?(n)
+		tr = x18n.t(key, interpolation...)
+		tr = tr.plural(n) if $.isPlainObject(tr)
+
+		setTranslation($this, tr)
 	@
 
 x18n.on ['lang:change', 'dict:change'], ->
