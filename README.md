@@ -66,7 +66,11 @@ jQuery.x18n contains x18n and jQuery.x18n itself, so you don't need to include x
 
 Whenever new translations are added or the language changes `$('body').x18n()` will be called automatically. You can of course also call it yourself to just update specific elements when a new plural is needed or something similiar.
 
-`$.fn.x18n` will look for `data-t`, `data-interpolation`  and `data-plural` attributes and update the HTML of the elements with the translation.
+`$.fn.x18n` will look for `data-t`, `data-interpolation`  and `data-plural` attributes and update the HTML of the elements with the translation. Different kind of elements are handled differently:
+
+- *button inputs:* The `value` will be updated.
+- *other inputs:* The `placeholder` will be updated.
+- *other elements*: The `innerHTML` will be updated.
 
 You can customise the used data attributes:
 
