@@ -4,9 +4,6 @@
 [submodule "spec/chai"]
 	path = spec/chai
 	url = https://github.com/chaijs/chai.git
-[submodule "lib/x18n"]
-	path = lib/x18n
-	url = https://github.com/js-coder/x18n.git
 [submodule "spec/chai-jquery"]
 	path = spec/chai-jquery
 	url = https://github.com/chaijs/chai-jquery.git
