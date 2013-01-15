@@ -31,11 +31,7 @@ $.fn.x18n = ->
 		interpolation = $this.attr("data-#{config.interpolation}") || '[]'
 		n = $this.attr("data-#{config.plural}")
 
-		tr = x18n.t(key, JSON.parse(interpolation)...)
-
-		tr = tr.plural(n) if $.isPlainObject tr
-
-		$this.html(tr)
+		$this.t(key, JSON.parse(interpolation)...).plural?(n)
 	@
 
 x18n.on ['lang:change', 'dict:change'], ->
