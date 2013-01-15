@@ -82,8 +82,11 @@
           }
         ]));
       });
-      return it('should return an object with a plural method when not asking for a string', function() {
+      it('should return an object with a plural method when not asking for a string', function() {
         return expect(tEl.t('users')).to.be.an('object')["with"].property('plural').that.is.a('function');
+      });
+      return it('should return itself when no plural is available', function() {
+        return expect(tEl.t('users').plural(5)).to.equal(tEl);
       });
     });
     describe('t(key).plural', function() {

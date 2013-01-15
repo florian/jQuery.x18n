@@ -68,6 +68,9 @@ describe 'jQuery', ->
 		it 'should return an object with a plural method when not asking for a string', ->
 			expect(tEl.t('users')).to.be.an('object').with.property('plural').that.is.a('function')
 
+		it 'should return itself when no plural is available', ->
+			expect(tEl.t('users').plural(5)).to.equal(tEl)
+
 	describe 't(key).plural', ->
 		it 'should return this', ->
 			expect(pluralEl.t('users').plural(2)).to.equal(pluralEl)
