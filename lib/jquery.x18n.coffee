@@ -30,6 +30,7 @@ $.fn.t = (key, interpolation...) ->
 		@plural = plural
 	else
 		setTranslation(@, tr)
+		@plural = -> @
 		@attr("data-#{config.interpolation}", JSON.stringify(interpolation))
 	@
 
