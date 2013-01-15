@@ -60,6 +60,8 @@ The elements will contain the translation of the detected language by default. W
 
 In case you are not familiar with x18n, you should take a look at the [getting started guide](https://github.com/js-coder/x18n/wiki/Getting-started) for the general usage of x18n itself.
 
+jQuery.x18n contains x18n and jQuery.x18n itself, so you don't need to include x18n by yourself.
+
 ## `$.fn.x18n`
 
 Whenever new translations are added or the language changes `$('body').x18n()` will be called automatically. You can of course also call it yourself to just update specific elements when a new plural is needed or something similiar.
