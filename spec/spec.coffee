@@ -29,6 +29,15 @@ input = $('#input')
 config = $.x18n.config
 
 describe 'jQuery', ->
+	afterEach ->
+		tEl.html('')
+		x18nEl.html('')
+		pluralEl.html('')
+		submit.val('')
+		input.attr('placeholder', '')
+
+		x18n.set('en')
+
 	describe 't', ->
 		it 'should return this', ->
 			expect(tEl.t('language')).to.equal(tEl)
@@ -104,8 +113,7 @@ describe 'jQuery', ->
 			expect(tEl).to.have.html('Willkommen John')
 
 			tEl.t('bye', name: 'John')
-			x18n.set('en')
-			expect(tEl).to.have.html('Bye John')
+			expect(tEl).to.have.html('Tschüss John')
 
 		it 'should read the serialised plural and pass it to the plural method', ->
 			pluralEl.t('users').plural(1)

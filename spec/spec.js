@@ -40,6 +40,14 @@
   config = $.x18n.config;
 
   describe('jQuery', function() {
+    afterEach(function() {
+      tEl.html('');
+      x18nEl.html('');
+      pluralEl.html('');
+      submit.val('');
+      input.attr('placeholder', '');
+      return x18n.set('en');
+    });
     describe('t', function() {
       it('should return this', function() {
         return expect(tEl.t('language')).to.equal(tEl);
@@ -123,8 +131,7 @@
         tEl.t('bye', {
           name: 'John'
         });
-        x18n.set('en');
-        return expect(tEl).to.have.html('Bye John');
+        return expect(tEl).to.have.html('Tschüss John');
       });
       return it('should read the serialised plural and pass it to the plural method', function() {
         pluralEl.t('users').plural(1);
