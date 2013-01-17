@@ -30,6 +30,6 @@
   "homepage": "https://github.com/js-coder/jQuery.x18n",
   "docs": "https://github.com/js-coder/jQuery.x18n#readme",
   "dependencies": {
-    "jquery": "*"
+    "jquery": ">=1.3"
   }
 }
