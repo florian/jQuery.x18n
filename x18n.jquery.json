@@ -1,0 +1,35 @@
+{
+  "name": "jQuery.x18n",
+  "title": "The jQuery adapter for x18n.",
+  "description": "Automatically updates your HTML when x18n translations are added or the language is changed.",
+  "keywords": [
+    "i18n",
+    "internationalisiation",
+	"internationaliziation",
+    "x18n"
+  ],
+  "version": "1.1.0",
+  "author": {
+    "name": "Florian H.",
+    "url": "https://github.com/js-coder"
+  },
+  "maintainers": [
+    {
+      "name": "Florian H.",
+      "email": "jscoderr@gmail.com",
+      "url": "https://github.com/js-coder"
+    }
+  ],
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://opensource.org/licenses/MIT/"
+    }
+  ],
+  "bugs": "https://github.com/js-coder/jQuery.x18n/issues",
+  "homepage": "https://github.com/js-coder/jQuery.x18n",
+  "docs": "https://github.com/js-coder/jQuery.x18n#readme",
+  "dependencies": {
+    "jquery": "*"
+  }
+}
