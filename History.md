@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.1 / 2013-02-16
+
+Upgrade to x18n v1.0.2 that fixes an interpolation bug.
+
 ## 1.1.0 / 2013-01-15
 
 - Handle elements differently: Set the value for buttons, placeholder for other inputs, and the innerHTML for all other elements.
