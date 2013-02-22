@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.2 / 2013-02-22
+
+Bugfix: Translating `button[type=submit|reset]` didn't work correctly.
+
 ## 1.1.1 / 2013-02-16
 
 Upgrade to x18n v1.0.2 that fixes an interpolation bug.
