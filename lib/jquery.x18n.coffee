@@ -9,7 +9,7 @@ $.x18n =
 config = $.x18n.config
 
 setTranslation = (el, tr) ->
-	if el.is(':submit, :reset, input[type=button]')
+	if el.is('input:submit, input:reset, input[type=button]')
 		el.val(tr)
 	else if el.is('input')
 		el.attr('placeholder', tr)
