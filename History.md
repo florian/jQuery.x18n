@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.3 / 2013-03-12
+
+Upgrade to the x18n v1.0.3 release.
+
 ## 1.1.2 / 2013-02-22
 
 Bugfix: Translating `button[type=submit|reset]` didn't work correctly.
